@@ -4,10 +4,10 @@ import numpy as np
 
 def calculate_sun_coordinates_eci():
     # Get the current date and time
-    # now = datetime.datetime(2023, 7, 14, 11, 11, 50)
-    now = datetime.datetime.now()
+    now = datetime.datetime(2023, 7, 14, 0, 0, 0)
+    # now = datetime.datetime.now()
     print(f'time now : {now}')
-    #NOTE: time now : 2023-07-14 16:17:55.996694
+    #NOTE: time now : 2023-07-14 16:17:55.99669455
     
     # Calculate the number of Julian centuries since J2000.0
     jd = 2451545.0 + (now - datetime.datetime(2000, 1, 1, 12, 0, 0)).total_seconds() / 86400.0

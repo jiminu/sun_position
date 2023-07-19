@@ -3,6 +3,7 @@ from astropy.time import Time
 import astropy.units as u
 import math
 import numpy as np
+from datetime import datetime
 
 def datetime_to_julian(dt):
     a = (14 - dt.month) // 12
@@ -32,9 +33,15 @@ def calc_xyz(ra, dec):
     return x, y, z
 
 # Set the time for which you want to calculate the Sun's coordinates
-time = '2023-07-14T12:00:00'
-time = Time.now()
-# time = Time(time)
+time = '2023-07-14T00:00:00'
+
+# utc
+# time = Time.now()
+# time = Time(datetime.now())
+time = Time(time)
+
+
+print(time)
 
 jd = time.jd
 
@@ -44,47 +51,40 @@ solar_system_ephemeris.set("jpl")
 # Get the Sun's coordinates in the ECI frame
 sun = get_body("sun", time)
 
-# Print the Sun's coordinates
-x_gcrs, y_gcrs, z_gcrs = calc_xyz(sun.gcrs.ra.value, sun.gcrs.dec.value)
-x_icrs, y_icrs, z_icrs = calc_xyz(sun.icrs.ra.value, sun.icrs.dec.value)
-x_tete, y_tete, z_tete = calc_xyz(sun.tete.ra.value, sun.tete.dec.value)
-x_cirs, y_cirs, z_cirs = calc_xyz(sun.cirs.ra.value, sun.cirs.dec.value)
-x_fk5, y_fk5, z_fk5 = calc_xyz(sun.fk5.ra.value, sun.fk5.dec.value)
-
 print('astropy gcrs')
-print("Sun's X coordinate:", x_gcrs)
-print("Sun's Y coordinate:", y_gcrs)
-print("Sun's Z coordinate:", z_gcrs)
+print("Sun's X coordinate:", sun.gcrs.cartesian.x)
+print("Sun's Y coordinate:", sun.gcrs.cartesian.y)
+print("Sun's Z coordinate:", sun.gcrs.cartesian.z)
 print('')
 
 print('astropy icrs')
-print("Sun's X coordinate:", x_icrs)
-print("Sun's Y coordinate:", y_icrs)
-print("Sun's Z coordinate:", z_icrs)
+print("Sun's X coordinate:", sun.icrs.cartesian.x)
+print("Sun's Y coordinate:", sun.icrs.cartesian.y)
+print("Sun's Z coordinate:", sun.icrs.cartesian.z)
 print('')
 
 print('astropy tete')
-print("Sun's X coordinate:", x_tete)
-print("Sun's Y coordinate:", y_tete)
-print("Sun's Z coordinate:", z_tete)
+print("Sun's X coordinate:", sun.tete.cartesian.x)
+print("Sun's Y coordinate:", sun.tete.cartesian.y)
+print("Sun's Z coordinate:", sun.tete.cartesian.z)
 print('')
 
 print('astropy cirs')
-print("Sun's X coordinate:", x_cirs)
-print("Sun's Y coordinate:", y_cirs)
-print("Sun's Z coordinate:", z_cirs)
+print("Sun's X coordinate:", sun.cirs.cartesian.x)
+print("Sun's Y coordinate:", sun.cirs.cartesian.y)
+print("Sun's Z coordinate:", sun.cirs.cartesian.z)
 print('')
 
 print('astropy fk5')
-print("Sun's X coordinate:", x_fk5)
-print("Sun's Y coordinate:", y_fk5)
-print("Sun's Z coordinate:", z_fk5)
+print("Sun's X coordinate:", sun.fk5.cartesian.x)
+print("Sun's Y coordinate:", sun.fk5.cartesian.y)
+print("Sun's Z coordinate:", sun.fk5.cartesian.z)
 print('')
 
 print('astropy itrs')
-print("Sun's X coordinate:", sun.itrs.cartesian.x.value)
-print("Sun's Y coordinate:", sun.itrs.cartesian.y.value)
-print("Sun's Z coordinate:", sun.itrs.cartesian.z.value)
+print("Sun's X coordinate:", sun.itrs.cartesian.x)
+print("Sun's Y coordinate:", sun.itrs.cartesian.y)
+print("Sun's Z coordinate:", sun.itrs.cartesian.z)
 print('')
 
 print('astropy teme')

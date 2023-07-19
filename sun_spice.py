@@ -9,7 +9,10 @@ spice.furnsh(f'{path}de430.bsp')
 spice.furnsh(f'{path}pck00010.tpc')
 
 # Specify the time of interest (in this example, it's the current time)
-current_time = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+current_time = datetime(2023, 7, 14, 0, 0, 0).strftime('%Y-%m-%dT%H:%M:%S')
+# current_time = datetime.now().strftime('%Y-%m-%dT%H:%M:%S')
+# current_time = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S')
+print(current_time)
 
 et = spice.str2et(current_time)
 # Define the observer and target as Earth and Sun, respectively

@@ -26,47 +26,46 @@ def calculate_angle(x1, y1, z1, x2, y2, z2, x3, y3, z3):
 
     return angle
 
-# 좌표 입력
-x_site = 	-56286979.62194103
-y_site = 	129616845.01029563
-z_site =  	56188360.107969224
+if __name__ == '__main__' :
+    # 좌표 입력
+    x_spice = -54537787.29746191
+    y_spice = 130248863.55205774
+    z_spice =  56462268.18020495
 
-x_calc = -56538121.15588646
-y_calc = 128057407.74187401
-z_calc =  55511555.651647896
-
-x_spice = -56289324.06000696
-y_spice = 129615982.1728326
-z_spice =  55773768.51302104
-
-x_astro_gcrs  = -54846235.54483388
-y_astro_gcrs  = 128660530.91391857
-z_astro_gcrs  =  55787557.97113865
-
-x_astro_teme  = -56203706.13468422
-y_astro_teme  = 129647145.54279512
-z_astro_teme  =  56207557.90068312 
-
-x_astro_icrs  = -148077529.7489035
-y_astro_icrs  = -26282480.58826596
-z_astro_icrs  = -7391307.071477198
+    x_astro_gcrs  = -54523500.95223228
+    y_astro_gcrs  = 130253905.95454401
+    z_astro_gcrs  =  56464454.3778301
+    
+    x_astro_teme  = -55336272.639175065
+    y_astro_teme  = 129962819.70413539
+    z_astro_teme  =  56344380.42646843
+    
+    x_calc  = -54795940.0873033
+    y_calc  = 128664548.36510833
+    z_calc  =  55774745.50930806
 
 
-# 각도 계산
-angle_site_to_lib    = calculate_angle(0, 0, 0, x_site, y_site, z_site, x_astro_gcrs, y_astro_gcrs, z_astro_gcrs)
-angle_lib_to_calc    = calculate_angle(0, 0, 0, x_astro_gcrs, y_astro_gcrs, z_astro_gcrs, x_calc, y_calc, z_calc)
-angle_calc_to_site    = calculate_angle(0, 0, 0, x_calc, y_calc, z_calc, x_site, y_site, z_site)
-angle_spice_to_site    = calculate_angle(0, 0, 0, x_spice, y_spice, z_spice, x_site, y_site, z_site)
+    # 각도 계산
+    angle_spice_to_astro_gcrs    = calculate_angle(0, 0, 0, x_spice, y_spice, z_spice, x_astro_gcrs, y_astro_gcrs, z_astro_gcrs)
+    angle_spice_to_astro_teme    = calculate_angle(0, 0, 0, x_spice, y_spice, z_spice, x_astro_teme, y_astro_teme, z_astro_teme)
+    angle_spice_to_calc    = calculate_angle(0, 0, 0, x_spice, y_spice, z_spice, x_calc, y_calc, z_calc)
 
-angle_site_to_gcrs  = calculate_angle(0, 0, 0, x_site, y_site, z_site, x_astro_gcrs, y_astro_gcrs, z_astro_gcrs)
-angle_site_to_teme  = calculate_angle(0, 0, 0, x_site, y_site, z_site, x_astro_teme, y_astro_teme, z_astro_teme)
-angle_site_to_icrs  = calculate_angle(0, 0, 0, x_site, y_site, z_site, x_astro_icrs, y_astro_icrs, z_astro_icrs)
+    print(f"spice to astro gcrs  : {angle_spice_to_astro_gcrs}")
+    print(f"spice to astro teme  : {angle_spice_to_astro_teme}")
+    print(f"spice to calc        : {angle_spice_to_calc}")
+    print("\n")
 
-print(f"site to lib   : {angle_site_to_lib}")
-print(f"lib to calc   : {angle_lib_to_calc}")
-print(f"calc to site  : {angle_calc_to_site}")
-print(f"spice to site : {angle_spice_to_site}\n")
 
-print(f"site to gcrs  : {angle_site_to_gcrs}")
-print(f"site to teme  : {angle_site_to_teme}")
-print(f"site to icrs  : {angle_site_to_icrs}")
+    ECEF_spice_x = -141205056.63961306
+    ECEF_spice_y =   -3800796.8390634153 
+    ECEF_spice_z =   56336580.92883327
+    
+    ECEF_astro_itrs_x = -141207382.45348424
+    ECEF_astro_itrs_y =   -3591209.329588586
+    ECEF_astro_itrs_z =   56344380.42646843
+    
+    
+    angle_ecef_spice_astro    = calculate_angle(0, 0, 0, ECEF_spice_x, ECEF_spice_y, ECEF_spice_z, ECEF_astro_itrs_x, ECEF_astro_itrs_y, ECEF_astro_itrs_z)
+    
+    print(f"spice to astro ecef  : {angle_ecef_spice_astro}")
+    
