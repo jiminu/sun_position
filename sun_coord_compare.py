@@ -46,13 +46,17 @@ if __name__ == '__main__' :
 
 
     # 각도 계산
-    angle_spice_to_astro_gcrs    = calculate_angle(0, 0, 0, x_spice, y_spice, z_spice, x_astro_gcrs, y_astro_gcrs, z_astro_gcrs)
-    angle_spice_to_astro_teme    = calculate_angle(0, 0, 0, x_spice, y_spice, z_spice, x_astro_teme, y_astro_teme, z_astro_teme)
-    angle_spice_to_calc    = calculate_angle(0, 0, 0, x_spice, y_spice, z_spice, x_calc, y_calc, z_calc)
+    angle_spice_to_astro_gcrs = calculate_angle(0, 0, 0, x_spice, y_spice, z_spice, x_astro_gcrs, y_astro_gcrs, z_astro_gcrs)
+    angle_spice_to_astro_teme = calculate_angle(0, 0, 0, x_spice, y_spice, z_spice, x_astro_teme, y_astro_teme, z_astro_teme)
+    angle_spice_to_calc       = calculate_angle(0, 0, 0, x_spice, y_spice, z_spice, x_calc, y_calc, z_calc)
+    
+    angle_teme_to_calc = calculate_angle(0, 0, 0, x_astro_teme, y_astro_teme, z_astro_teme, x_calc, y_calc, z_calc)
+    
 
     print(f"spice to astro gcrs  : {angle_spice_to_astro_gcrs}")
     print(f"spice to astro teme  : {angle_spice_to_astro_teme}")
     print(f"spice to calc        : {angle_spice_to_calc}")
+    print(f"teme to calc         : {angle_teme_to_calc}")
     print("\n")
 
 

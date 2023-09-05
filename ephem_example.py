@@ -1,7 +1,11 @@
-import ephem
+from astropy import units as u
+from poliastro.bodies import Earth, Sun
 
-line = "C/2002 Y1 (Juels-Holvorcem),e,103.7816,166.2194,128.8232,242.5695,0.0002609,0.99705756,0.0000,04/13.2508/2003,2000,g  6.5,4.0"
-yh = ephem.readdb(line)
-yh.compute('2023/7/14')
-print('%.10f' % yh.earth_distance)
-print(yh.mag)
+from poliastro.twobody import Orbit
+
+r = [-2.77880220000000e+07, -3.17067190000000e+07, 3.42128000000000e+05] * u.m
+v = [2.31245200000000e+03, -2.02658000000000e+03, -2.47880000000000e+01] * u.m / u.s
+
+orb = Orbit.from_vectors(Earth, r, v)
+
+orb.plot()
